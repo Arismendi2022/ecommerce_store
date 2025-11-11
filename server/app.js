@@ -1,14 +1,13 @@
 import express from 'express';
-/*import { config } from 'dotenv';*/ // revisar para dejarlo o quiarlo
+import 'dotenv/config'
 import cors from 'cors';
 import cookieParser from "cookie-parser";
 import fileUpload from 'express-fileupload';
 import { createTables } from './utils/createTables.js';
 import { errorMiddleware } from "./middlewares/errorMiddleware.js";
+import authRouter from './router/authRoutes.js';
 
 const app = express();
-
-/*config({path: "./config/config.env"});*/  // revisar para dejarlo o quiarlo
 
 app.use(cors({
 		origin: [process.env.FRONTEND_URL, process.env.DASHBOARD_URL],
@@ -27,6 +26,9 @@ app.use(fileUpload({
 		useTempFiles: true,
 	})
 );
+
+app.use("/api/v1/auth", authRouter);
+
 
 // Crear tablas y conectar a la DB
 createTables();

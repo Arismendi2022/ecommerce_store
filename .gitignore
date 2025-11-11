@@ -1,6 +1,7 @@
 node_modules/
-     .idea/
-     dist/
-     build/
-     *.log
-     .env
+.idea/
+dist/
+build/
+*.log
+.env
+package-lock.json
